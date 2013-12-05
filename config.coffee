@@ -1,2 +1,2 @@
 module.exports =
-	name: 'Sch Boilerplate'
+	name: 'Top Friends'

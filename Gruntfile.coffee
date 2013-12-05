@@ -15,8 +15,8 @@ module.exports = (grunt) ->
 		watch:
 			styles:
 				files: [
-					'public/less/**/*.less',
-					'public/coffee/**/*.coffee'
+					'src/less/**/*.less',
+					'src/coffee/**/*.coffee'
 				]
 				tasks: [
 					'less', 'coffee', 'uglify'
@@ -25,19 +25,19 @@ module.exports = (grunt) ->
 			development:
 				options:
 					paths: [
-						'public/less/'
+						'src/less/'
 					]
 					compress: true
 					yuicompress: true
 					optimization: 2
 				files:
-					'public/css/main.css': 'public/less/main.less'
+					'public/css/themes/default.css': 'src/less/themes/default.less'
 		coffee:
 			glob_to_multiple:
 				expand: true
 				flatten: true
 				compress: true
-				cwd: 'public/coffee'
+				cwd: 'src/coffee'
 				src: [
 					'*.coffee'
 				]
@@ -70,5 +70,5 @@ module.exports = (grunt) ->
 	grunt.loadNpmTasks 'grunt-contrib-uglify'
 	grunt.loadNpmTasks 'grunt-nodemon'
 	grunt.loadNpmTasks 'grunt-concurrent'
-	grunt.registerTask 'default', ['concurrent']
+	grunt.registerTask 'default', ['less', 'coffee', 'concurrent']
 	grunt.registerTask 'dev', ['clean', 'less:compile', 'watch:styles']

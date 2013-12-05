@@ -1,11 +1,31 @@
 extends layouts/default
 
 block content
-    //- Oh yeah, sweet starter template!
-    .starter-template.main-content
-        h1 #{__('Hello')}
-        p.lead
-            | Use this document as a way to quickly start any new project.
-            br
-            | All you get is this text and a mostly barebones HTML document.
-        btn.btn.btn-default.btn-lg #{__('Ok')}
+  div.row
+    div.col-lg-4
+      div.well.app-block
+        div.holder
+          h3= t('Top Chat')
+          p.desc-block= t('Faz um ranking com os amigos que você mais conversa pelo chat do Facebook.')
+          button.btn.btn-primary.pull-right
+            i.fa.fa-star
+            span= ' ' + t('Usar')
+          div.clearfix
+    div.col-lg-4
+      div.well.app-block
+        div.holder
+          h3= t('Top Chat Mosaico')
+          p.desc-block= t('Faz um dos ranking em forma de mosaico com os amigos que você mais conversa pelo chat do facebook.')
+          button.btn.btn-primary.pull-right
+            i.fa.fa-star
+            span= ' ' + t('Usar')
+          div.clearfix
+    div.col-lg-4
+      div.well.app-block
+        div.holder
+          h3= t('Top Seguidores')
+          p.desc-block= t('Faz um dos ranking em forma de mosaico com os amigos que você mais conversa pelo chat do facebook.')
+          button.btn.btn-primary.pull-right
+            i.fa.fa-star
+            span= ' ' + t('Usar')
+          div.clearfix

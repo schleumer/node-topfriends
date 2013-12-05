@@ -2,10 +2,10 @@ module.exports = (req, res, next) ->
 	res.locals.__p = (count, singular, plural, none) ->
 		count = parseInt(count or 0)
 		if count <= 0
-			__ none
+			t none
 		else if count is 1
-			__ singular
+			t singular
 		else
-			__ plural
+			t plural
 
 	next()

@@ -1,0 +1,45 @@
+#navbar {
+  margin-top: 10px;
+}
+
+.logo-star {
+  color: @state-warning-bg
+}
+
+.logo-brand {
+  margin-left: 3px;
+}
+
+.desc-block{
+  min-height: 100px;
+}
+.app-block{
+  position:relative;
+  overflow:hidden;
+}
+
+.app-block:before{
+  content: '';
+  position:absolute;
+  top: -42px;
+  right: -60px;
+  #gradient.directional(fade(@well-bg, 100%), fade(@well-bg, 97%),45deg);
+  width: 250px;
+  height: 250px;
+  z-index: 2;
+}
+
+.app-block .holder{
+  z-index: 3;
+  position: relative;
+}
+
+.app-block:after{
+  font-family: 'FontAwesome';
+  content: '\f005';
+  font-size: 300px;
+  position: absolute;
+  top: -130px;
+  right: -100px;
+  z-index: 1;
+}
