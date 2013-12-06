@@ -1,11 +1,11 @@
 !!! 5
-html(xmlns:ng="http://angularjs.org", ng-app)
+html(xmlns:ng="http://angularjs.org")
   head
     link(href='components/font-awesome/css/font-awesome.min.css', rel='stylesheet')
     link(href='css/themes/default.css', rel='stylesheet')
   body
     .container
-      #navbar.navbar.navbar-inverse(role='navigation')
+      #navbar.navbar.navbar-default(role='navigation')
         .container
           .navbar-header
             button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
@@ -16,8 +16,26 @@ html(xmlns:ng="http://angularjs.org", ng-app)
             a.navbar-brand(href='/')
               i.fa.fa-star.logo-star
               span.logo-brand #{__(config.name)}
+          .collapse.navbar-collapse
+            ul.nav.navbar-nav
+              li
+                a.send-message(href='#')
+                  i.fa.fa-envelope.send-message
+              li.dropdown
+                a#themes-dropdown(role='button', data-toggle='dropdown', href='#',sch-dropdown)
+                  | #{t('Temas')}
+                  b.caret
+                ul#menu1.dropdown-menu(role='menu', aria-labelledby='themes-dropdown')
+                  each theme, key in config.themes
+                    li(role='presentation')
+                      a(role='themes-item', href='/change-theme/#{key}') #{theme}
+
+
     #main.container
-      block content
+      div(ng-controller='MainController',ng-view)
+        h2.text-center Carregando...
+      #footer
+        small
+          .pull-right Wesley Schleumer Desenvolvimento Web
   script(src='components/requirejs/require.js', type='text/javascript')
   script(src='js/config.js', type='text/javascript')
-

@@ -10,31 +10,60 @@
   margin-left: 3px;
 }
 
-.desc-block{
+.desc-block {
   min-height: 100px;
 }
-.app-block{
-  position:relative;
-  overflow:hidden;
+
+.app-box {
+  position: relative;
+  z-index: 1;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  margin-bottom: 30px;
 }
 
-.app-block:before{
+.app-auth-box {
+  position: relative;
+  width: 40%;
+  margin-left: 50%;
+  left: -20%;
+  margin-top: 20px;
+}
+
+.app-auth-box-holder {
+  position: absolute;
+  z-index: 4;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  top: 0;
+  background-color: fade(@modal-backdrop-bg, 30%);
+  border-radius: @panel-border-radius;
+}
+
+.app-block {
+  position: relative;
+  overflow: hidden;
+  padding: 10px;
+}
+
+.app-block:before {
   content: '';
-  position:absolute;
-  top: -42px;
+  position: absolute;
+  top: -170px;
   right: -60px;
-  #gradient.directional(fade(@well-bg, 100%), fade(@well-bg, 97%),45deg);
+  #gradient.directional(fade(@panel-bg, 100%), fade(@panel-bg, 92%), 45deg);
   width: 250px;
-  height: 250px;
+  height: 400px;
   z-index: 2;
 }
 
-.app-block .holder{
+.app-block .holder {
   z-index: 3;
   position: relative;
 }
 
-.app-block:after{
+.app-block:after {
   font-family: 'FontAwesome';
   content: '\f005';
   font-size: 300px;

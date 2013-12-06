@@ -7,6 +7,12 @@ routes = require("./routes")
 path = require("path")
 mongoose = require("mongoose")
 i18n = require('i18n')
+i18n.configure(
+  locales: ['ptBR', 'en'],
+  defaultLocale: 'ptBR',
+  directory: __dirname + '/locales'
+)
+GLOBAL.t = i18n.__
 
 GLOBAL.r = r
 GLOBAL.config = r("/config")
@@ -23,16 +29,8 @@ store = new SessionStore(
   connection: mongoose.connection
 )
 
-i18n.configure(
-  locales: ['ptBR', 'en'],
-  defaultLocale: 'ptBR',
-  directory: __dirname + '/locales'
-)
-
-GLOBAL.t = i18n.__
 
 app.configure "development", ->
-
   app.set "port", process.env.PORT or 3000
   app.set "views", path.join(__dirname, "views")
   app.set "view engine", "jade"
@@ -57,7 +55,7 @@ app.configure "development", ->
   helpers = r("/lib/helpers")
   app.use helpers
   app.locals.pretty = true
-  app.locals.basedir = path.join(__dirname, "views")
+  app.locals.basedir = config.viewsDir
   app.use app.router
   routes app
 
