@@ -8,13 +8,17 @@ require.config
     'underscore': '../components/lodash/dist/lodash.compat'
     'angular': '../components/angular/angular'
     'ngRoute': '../components/angular-route/angular-route'
-    'angular.topfriends.utils': 'topfriends'
+    'topfriends.utils': 'topfriends/utils'
+    'topfriends.facebook': 'topfriends/facebook'
     'bootstrap': '../components/bootstrap/dist/js/bootstrap'
     'bootstrap.dropdown': '../components/bootstrap/js/dropdown'
+    'facebook': '//connect.facebook.net/en_US/all'
   shim:
     'underscore':
       deps: []
       exports: '_'
+    'facebook':
+      exports: 'FB'
     'angular':
       deps: [
         'jquery', 'underscore'

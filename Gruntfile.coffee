@@ -20,8 +20,8 @@ module.exports = (grunt) ->
     concurrent:
       dev:
         tasks: [
-          'watch',
-          'nodemon'
+          'nodemon',
+          'watch'
         ]
         options:
           logConcurrentOutput: true
@@ -32,7 +32,7 @@ module.exports = (grunt) ->
           'src/coffee/**/*.coffee'
         ]
         tasks: [
-          'less', 'coffee', 'uglify'
+          'clean', 'less', 'coffee', 'uglify'
         ]
     less:
       development:
@@ -45,14 +45,16 @@ module.exports = (grunt) ->
           optimization: 2
         files:
           'public/css/themes/default.css': 'src/less/themes/default.less'
+          'public/css/themes/amelia.css': 'src/less/themes/amelia.less'
+          'public/css/themes/ubuntu.css': 'src/less/themes/ubuntu.less'
+          'public/css/themes/yeti.css': 'src/less/themes/yeti.less'
     coffee:
       glob_to_multiple:
         expand: true
-        flatten: true
         compress: true
         cwd: 'src/coffee'
         src: [
-          '*.coffee'
+          '**/*.coffee'
         ]
         dest: 'public/js/'
         ext: '.js'
@@ -69,9 +71,8 @@ module.exports = (grunt) ->
       dev:
         options:
           file: 'server.coffee'
-#					nodeArgs: [
-#						'--debug'
-#					]
+          ignoredFiles: ['node_modules/**', 'src/**', 'public/**', '.git/**']
+          watchedExtensions: ['coffee']
           env:
             PORT: '3000'
 
@@ -83,5 +84,5 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-uglify'
   grunt.loadNpmTasks 'grunt-nodemon'
   grunt.loadNpmTasks 'grunt-concurrent'
-  grunt.registerTask 'default', ['less', 'coffee', 'concurrent']
+  grunt.registerTask 'default', ['clean', 'less', 'coffee', 'uglify', 'concurrent']
   grunt.registerTask 'dev', ['clean', 'less:compile', 'watch:styles']
