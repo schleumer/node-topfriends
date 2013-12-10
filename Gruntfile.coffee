@@ -13,10 +13,9 @@ GLOBAL.config = r("/config")
 
 module.exports = (grunt) ->
   grunt.initConfig
-    clean: [
-      'public/css/',
-      'public/js/'
-    ]
+    clean:
+      css: ['public/css/']
+      js: ['public/js/']
     concurrent:
       dev:
         tasks: [
@@ -28,12 +27,16 @@ module.exports = (grunt) ->
     watch:
       styles:
         files: [
-          'src/less/**/*.less',
-          'src/coffee/**/*.coffee'
+          'src/less/**/*.less'
         ]
         tasks: [
-          'clean', 'less', 'coffee', 'uglify'
+          'clean:css', 'less'
         ]
+      coffee:
+        files: [
+          'src/coffee/**/*.coffee'
+        ]
+        tasks: ['clean:js', 'coffee', 'uglify']
     less:
       development:
         options:
@@ -47,6 +50,7 @@ module.exports = (grunt) ->
           'public/css/themes/default.css': 'src/less/themes/default.less'
           'public/css/themes/amelia.css': 'src/less/themes/amelia.less'
           'public/css/themes/ubuntu.css': 'src/less/themes/ubuntu.less'
+          'public/css/themes/pink.css': 'src/less/themes/pink.less'
           'public/css/themes/yeti.css': 'src/less/themes/yeti.less'
     coffee:
       glob_to_multiple:

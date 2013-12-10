@@ -6,6 +6,8 @@ r = require("./lib/r")
 routes = require("./routes")
 path = require("path")
 mongoose = require("mongoose")
+Facebook = require('facebook-node-sdk');
+
 i18n = require('i18n')
 i18n.configure(
   locales: ['ptBR', 'en'],
@@ -29,6 +31,7 @@ store = new SessionStore(
   connection: mongoose.connection
 )
 
+graphConf = r('/config/fb').auth
 
 app.configure "development", ->
   app.set "port", process.env.PORT or 3000
@@ -43,7 +46,7 @@ app.configure "development", ->
     cookie: # expire session in 15 min or 900 seconds
       maxAge: 900000
   )
-
+  app.use Facebook.middleware(graphConf)
   app.use i18n.init
   app.use express.favicon()
   app.use express.logger("dev")

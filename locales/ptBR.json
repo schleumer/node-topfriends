@@ -31,5 +31,9 @@
 	"Termos de uso": "Termos de uso",
 	"Politica de privacidade": "Politica de privacidade",
 	"Suporte": "Suporte",
-	"Carregando...": "Carregando..."
+	"Carregando...": "Carregando...",
+	"Logado como {{user.name}}": "Logado como {{user.name}}",
+	"Sair": "Sair",
+	"Logado como <b>{{user.name}}<b>": "Logado como <b>{{user.name}}<b>",
+	"Logado como": "Logado como"
 }

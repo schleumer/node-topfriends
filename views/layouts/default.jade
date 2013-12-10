@@ -1,11 +1,12 @@
 !!! 5
 html(xmlns:ng="http://angularjs.org")
   head
+    title= t('Top Friends')
     link(href='components/font-awesome/css/font-awesome.min.css', rel='stylesheet')
     link(href='css/themes/' + session.theme + '.css', rel='stylesheet')
-  body
+  body.ng-cloak(ng-controller='MainController')
     .container
-      #navbar.navbar.navbar-default(role='navigation')
+      #navbar.navbar.navbar-inverse(role='navigation')
         .container
           .navbar-header
             button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
@@ -30,9 +31,23 @@ html(xmlns:ng="http://angularjs.org")
                     li(role='presentation')
                       a(role='themes-item', href='/change-theme/#{key}') #{theme}
 
+            ul.nav.navbar-nav.pull-right(ng-if="user")
+              li.dropdown(style='margin-right:8px')
+                a#user-dropdown(role='button', data-toggle='dropdown', href='#',sch-dropdown)
+                  img.user-profile-image(ng-src='https://graph.facebook.com/{{user.id}}/picture')
+                  | #{t('Logado como')}
+                  | 
+                  b {{user.name}}
+                  b.caret
+                ul.dropdown-menu(role='menu', aria-labelledby='user-dropdown')
+                  li(role='presentation')
+                    a(role='user-item', href='/user/logout')
+                      i.fa.fa-sign-out
+                      = ' '
+                      = t('Sair')
 
     #main.container
-      div(ng-controller='MainController',ng-view, style='min-height: 300px')
+      div(ng-view, style='min-height: 300px')
         h2.text-center 
           i.fa.fa-spin.fa-star.logo-star
           = ' '
@@ -47,5 +62,7 @@ html(xmlns:ng="http://angularjs.org")
             a(href='#!/privacidade')= t('Suporte')
             = ' | '
             span Wesley Schleumer Desenvolvimento Web
+  if session.facebookUser
+    input(type='hidden', value=JSON.stringify(session.facebookUser), id='session')
   script(src='components/requirejs/require.js', type='text/javascript')
   script(src='js/config.js', type='text/javascript')

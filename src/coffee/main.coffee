@@ -1,13 +1,12 @@
 require [
   'angular'
   'facebook'
+  'underscore'
   'ngRoute'
   'topfriends.utils'
   'topfriends.facebook'
-], (angular, FB) ->
+], (angular, FB, _) ->
   FB.init appId : '242235712573248'
-  FB.getLoginStatus (response) ->
-    console.log(response)
 
   app = angular.module 'Topfriends', [
     'topfriends.utils'
@@ -25,8 +24,25 @@ require [
     })
   ]
 
-  app.run ->
+  app.run ['$rootScope', '$http', 'facebook', ($rootScope, $http, facebook) ->
+    $rootScope.loginStatus = -1
+    $rootScope.user = null
+    $rootScope.authenticated = false
+    if angular.element('#session').length
+      session = JSON.parse(angular.element('#session').val())
+      if session
+        $rootScope.user = session
+        $rootScope.authenticated = true
+    else
+      FB.getLoginStatus (response) ->
+        facebook.login(response, (data) ->
+          if data
+            $rootScope.user = data.user
+            $rootScope.authenticated = data.authenticated
+          return
+        )
     return
+  ]
 
   app.controller 'MainController', ['$scope', ($scope) ->
   ]

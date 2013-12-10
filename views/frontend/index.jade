@@ -1,13 +1,13 @@
 div.row-fluid.app-box(ng-class="(authenticated ? 'row' : 'row-fluid')")
-  div.app-auth-box-holder
-    div.row.app-auth-box(ng-if='!authenticated')
+  div.app-auth-box-holder(ng-if='!authenticated')
+    div.row.app-auth-box
       div.well
         h2
           =t('Para ter acesso aos nossos aplicativos você precisa autorizar nosso site à acessar seus dados do')
           = ' '
           b= t('Facebook')
         br
-        a.btn.btn-info.pull-right(topfriends-facebook)
+        a.btn.btn-info.pull-right(topfriends-facebook, ng-model='$parent')
           i.fa.fa-facebook-square
           = ' '
           = t('Autorizar Top Friends')
