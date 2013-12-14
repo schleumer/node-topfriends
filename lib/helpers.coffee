@@ -1,7 +1,7 @@
 module.exports = (req, res, next) ->
   res.locals.session = req.session
   if not req.session.theme
-    req.session.theme = 'default'
+    req.session.theme = config.default_theme
   res.locals.__p = (count, singular, plural, none) ->
     count = parseInt(count or 0)
     if count <= 0

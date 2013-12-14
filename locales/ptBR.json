@@ -35,5 +35,7 @@
 	"Logado como {{user.name}}": "Logado como {{user.name}}",
 	"Sair": "Sair",
 	"Logado como <b>{{user.name}}<b>": "Logado como <b>{{user.name}}<b>",
-	"Logado como": "Logado como"
+	"Logado como": "Logado como",
+	"Gelado": "Gelado",
+	"Cinzento": "Cinzento"
 }

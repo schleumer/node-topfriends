@@ -51,6 +51,7 @@ module.exports = (grunt) ->
           'public/css/themes/amelia.css': 'src/less/themes/amelia.less'
           'public/css/themes/ubuntu.css': 'src/less/themes/ubuntu.less'
           'public/css/themes/pink.css': 'src/less/themes/pink.less'
+          'public/css/themes/slate.css': 'src/less/themes/slate.less'
           'public/css/themes/yeti.css': 'src/less/themes/yeti.less'
     coffee:
       glob_to_multiple:

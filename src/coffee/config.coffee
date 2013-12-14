@@ -10,6 +10,7 @@ require.config
     'ngRoute': '../components/angular-route/angular-route'
     'topfriends.utils': 'topfriends/utils'
     'topfriends.facebook': 'topfriends/facebook'
+    'topfriends.topchat': 'topfriends/topchat'
     'bootstrap': '../components/bootstrap/dist/js/bootstrap'
     'bootstrap.dropdown': '../components/bootstrap/js/dropdown'
     'facebook': '//connect.facebook.net/en_US/all'

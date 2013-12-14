@@ -5,7 +5,9 @@ module.exports =
   themes:
     pink: t('Rosinha')
     amelia: t('Amelia')
-    superhero: t('Superhero')
     ubuntu: t('Ubuntu')
+    yeti: t('Gelado')
+    slate: t('Cinzento')
     default: t('Padrão')
+  default_theme: 'default'
   viewsDir: path.join(__dirname, 'views')

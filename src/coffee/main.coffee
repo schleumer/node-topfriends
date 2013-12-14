@@ -5,12 +5,14 @@ require [
   'ngRoute'
   'topfriends.utils'
   'topfriends.facebook'
+  'topfriends.topchat'
 ], (angular, FB, _) ->
   FB.init appId : '242235712573248'
 
   app = angular.module 'Topfriends', [
     'topfriends.utils'
     'topfriends.facebook'
+    'topfriends.topchat'
     'ngRoute'
   ]
 
@@ -19,6 +21,9 @@ require [
     $routeProvider.when('/index', {
       templateUrl: 'templates/index',
       controller: 'IndexController'
+    }).when('/topchat', {
+      templateUrl: 'templates/topchat',
+      controller: 'TopChatController'
     }).otherwise({
       redirectTo: '/index'
     })
