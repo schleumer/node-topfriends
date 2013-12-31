@@ -14,8 +14,8 @@ GLOBAL.config = r("/config")
 module.exports = (grunt) ->
   grunt.initConfig
     clean:
-      css: ['public/css/']
-      js: ['public/js/']
+      css: ['public/css/**/*.css']
+      js: ['public/js/**/*.js']
     concurrent:
       dev:
         tasks: [

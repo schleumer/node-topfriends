@@ -37,5 +37,21 @@
 	"Logado como <b>{{user.name}}<b>": "Logado como <b>{{user.name}}<b>",
 	"Logado como": "Logado como",
 	"Gelado": "Gelado",
-	"Cinzento": "Cinzento"
+	"Cinzento": "Cinzento",
+	"Eu": "Eu",
+	"Autorizar": "Autorizar",
+	"Aguarde": "Aguarde",
+	"Aguarde...": "Aguarde...",
+	"Puxando informações do Facebook...": "Puxando informações do Facebook...",
+	"Puxando informações de mensagens do Facebook...": "Puxando informações de mensagens do Facebook...",
+	"Gerar Imagem do <b>Top Chat</b>": "Gerar Imagem do <b>Top Chat</b>",
+	"Gerar Imagem do": "Gerar Imagem do",
+	"Compartilhar imagem": "Compartilhar imagem",
+	"Marcar meus amigos": "Marcar meus amigos",
+	"Marcar Amigos": "Marcar Amigos",
+	"Compartilhar": "Compartilhar",
+	"Criar Imagem": "Criar Imagem",
+	"Trocando idéia com o Facebook...": "Trocando idéia com o Facebook...",
+	"Aconteceu um erro, tente novamente.": "Aconteceu um erro, tente novamente.",
+	"Aconteceu um erro D:": "Aconteceu um erro D:"
 }

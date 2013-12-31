@@ -1,12 +1,12 @@
 #!/usr/bin/env coffee
-
-express = require("express")
+express = require 'express'
 app = express()
-r = require("./lib/r")
-routes = require("./routes")
-path = require("path")
-mongoose = require("mongoose")
-Facebook = require('facebook-node-sdk');
+r = require './lib/r'
+http = require 'http'
+routes = require './routes'
+path = require 'path'
+mongoose = require 'mongoose'
+facebook = require 'facebook-node-sdk'
 
 i18n = require('i18n')
 i18n.configure(
@@ -26,12 +26,17 @@ mongoOpts =
 
 mongoose.connect "mongodb://localhost/test-boilerplate", mongoOpts
 SessionStore = require("session-mongoose")(express)
+cookieParser = express.cookieParser("123456")
 store = new SessionStore(
   interval: 120000
+  key: 'express.sid'
   connection: mongoose.connection
 )
 
-graphConf = r('/config/fb').auth
+fbConf = r('/config/fb')
+graphConf = fbConf.auth
+GLOBAL.facebookConf = fbConf
+
 
 app.configure "development", ->
   app.set "port", process.env.PORT or 3000
@@ -40,13 +45,14 @@ app.configure "development", ->
   app.set "view options",
     layout: false
 
-  app.use express.cookieParser("123456")
+  app.use cookieParser
   app.use express.session(
     store: store
-    cookie: # expire session in 15 min or 900 seconds
-      maxAge: 900000
+    cookie:
+      maxAge: (604800 * 100)
   )
-  app.use Facebook.middleware(graphConf)
+
+  app.use facebook.middleware(graphConf)
   app.use i18n.init
   app.use express.favicon()
   app.use express.logger("dev")
@@ -65,6 +71,18 @@ app.configure "development", ->
 app.on "close", ->
   console.log "Closed"
 
-app.listen app.get("port"), ->
-  console.log "Escutando em " + app.get("port")
+server = http.createServer(app)
+io = require('socket.io').listen(server)
 
+SessionSockets = require('session.socket.io')
+sessionSockets = new SessionSockets(io, store, cookieParser)
+sessionSockets.on('connection', (err, socket, session) ->
+  console.log err
+  require('./sockets/index')(socket, session, () ->
+    socket.emit('session', session)
+  )
+  return
+)
+
+
+server.listen(3000)

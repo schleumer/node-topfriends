@@ -1,42 +1,45 @@
-div.row-fluid.app-box(ng-class="(authenticated ? 'row' : 'row-fluid')")
-  div.app-auth-box-holder(ng-if='!authenticated')
-    div.row.app-auth-box
-      div.well
-        h2
+div.row-fluid.app-box(data-ng-class="(user ? 'row' : 'row-fluid')")
+  div.app-auth-box-holder(data-ng-if='!user')
+    div.row-fluid
+      div.well.col-sm-6.col-sm-offset-3.app-auth-box
+        h3
           =t('Para ter acesso aos nossos aplicativos você precisa autorizar nosso site à acessar seus dados do')
           = ' '
           b= t('Facebook')
         br
-        a.btn.btn-info.pull-right(topfriends-facebook, ng-model='$parent')
+        a.btn.btn-info.pull-right(data-topfriends-facebook, data-ng-model='$parent')
           i.fa.fa-facebook-square
           = ' '
           = t('Autorizar Top Friends')
         div.clearfix
-  div.col-lg-4
+  div.col-sm-4
     div.panel.panel-default.app-block
       div.holder
         h3= t('Top Chat')
         p.desc-block= t('Faz um ranking com os amigos que você mais conversa pelo chat do Facebook.')
-        button.btn.btn-primary.pull-right
-          i.fa.fa-star
-          span= ' ' + t('Usar')
+        div.desc-footer
+          a(data-topfriends-facebook-authorize=facebookConf.scopes.topchat_scope.join(','),href='#!/topchat').btn.btn-primary.pull-right
+            i.fa.fa-star
+            span= ' ' + t('Usar')
         div.clearfix
-  div.col-lg-4
+  div.col-sm-4
     div.panel.panel-default.app-block
       div.holder
         h3= t('Top Chat Mosaico')
         p.desc-block= t('Faz um dos ranking em forma de mosaico com os amigos que você mais conversa pelo chat do facebook.')
-        button.btn.btn-primary.pull-right
-          i.fa.fa-star
-          span= ' ' + t('Usar')
+        div.desc-footer
+          a(data-topfriends-facebook-authorize=facebookConf.scopes.topmosaic_scope.join(','),href='#!/topmosaic').btn.btn-primary.pull-right
+            i.fa.fa-star
+            span= ' ' + t('Usar')
         div.clearfix
-  div.col-lg-4
+  div.col-sm-4
     div.panel.panel-default.app-block
       div.holder
         h3= t('Top Seguidores')
         p.desc-block= t('Faz um dos ranking em forma de mosaico com os amigos que você mais conversa pelo chat do facebook.')
-        button.btn.btn-primary.pull-right
-          i.fa.fa-star
-          span= ' ' + t('Usar')
-        div.clearfix
+        div.desc-footer
+          a(data-topfriends-facebook-authorize=facebookConf.scopes.topfollower_scope.join(','),href='#!/topfollowers').btn.btn-primary.pull-right
+            i.fa.fa-star
+            span= ' ' + t('Usar')
+          div.clearfix
   div.clearfix

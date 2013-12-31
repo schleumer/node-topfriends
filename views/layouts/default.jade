@@ -1,10 +1,12 @@
 !!! 5
-html(xmlns:ng="http://angularjs.org")
+html
   head
     title= t('Top Friends')
+    meta(name="viewport", content="width=device-width,maximum-scale=1,minimum-scale=1")
     link(href='components/font-awesome/css/font-awesome.min.css', rel='stylesheet')
+    link(href='components/pnotify/jquery.pnotify.default.css', rel='stylesheet')
     link(href='css/themes/' + session.theme + '.css', rel='stylesheet')
-  body.ng-cloak(ng-controller='MainController')
+  body.ng-cloak(data-ng-controller='MainController')
     .container
       #navbar.navbar.navbar-inverse(role='navigation')
         .container
@@ -22,38 +24,47 @@ html(xmlns:ng="http://angularjs.org")
               li
                 a.send-message(href='#')
                   i.fa.fa-envelope.send-message
+              li
+                a(data-topfriends-quit-facebook,href='javascript:;')
+                  span.text-danger [DEV]
+                  | Quit
+              li
+                a(topfriends-logout,href='javascript:;')
+                  span.text-danger [DEV]
+                  | Exit
               li.dropdown
-                a#themes-dropdown(role='button', data-toggle='dropdown', href='#',sch-dropdown)
+                a#themes-dropdown(role='button', data-toggle='dropdown', href='#',data-sch-dropdown)
                   | #{t('Temas')}
                   b.caret
                 ul#menu1.dropdown-menu(role='menu', aria-labelledby='themes-dropdown')
                   each theme, key in config.themes
                     li(role='presentation')
-                      a(role='themes-item', href='/change-theme/#{key}') #{theme}
+                      a(role='menuitem', href='/change-theme/#{key}') #{theme}
 
-            ul.nav.navbar-nav.pull-right(ng-if="user")
+            ul.nav.navbar-nav.pull-right(data-ng-if="user")
               li.dropdown(style='margin-right:8px')
-                a#user-dropdown(role='button', data-toggle='dropdown', href='#',sch-dropdown)
-                  img.user-profile-image(ng-src='https://graph.facebook.com/{{user.id}}/picture')
-                  | #{t('Logado como')}
-                  | 
+                a#user-dropdown(role='button', data-toggle='dropdown', href='#',data-sch-dropdown)
+                  img.user-profile-image(data-ng-src='https://graph.facebook.com/{{user.id}}/picture', alt=t('Eu'), src='blank.png')
+                  = ' '
+                  = t('Logado como')
+                  = ' '
                   b {{user.name}}
                   b.caret
                 ul.dropdown-menu(role='menu', aria-labelledby='user-dropdown')
                   li(role='presentation')
-                    a(role='user-item', href='/user/logout')
+                    a(role='menuitem', href='/user/logout')
                       i.fa.fa-sign-out
                       = ' '
                       = t('Sair')
 
     #main.container
-      div(ng-view, style='min-height: 300px')
-        h2.text-center 
+      div.slide-animation(data-ng-view, style='min-height: 300px', data-ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}")
+        h2.text-center
           i.fa.fa-spin.fa-star.logo-star
           = ' '
           = t('Carregando...')
       #footer
-        small
+        div.small
           .pull-right
             a(href='#!/termos')= t('Termos de uso')
             = ' | '
@@ -62,7 +73,8 @@ html(xmlns:ng="http://angularjs.org")
             a(href='#!/privacidade')= t('Suporte')
             = ' | '
             span Wesley Schleumer Desenvolvimento Web
-  if session.facebookUser
-    input(type='hidden', value=JSON.stringify(session.facebookUser), id='session')
-  script(src='components/requirejs/require.js', type='text/javascript')
-  script(src='js/config.js', type='text/javascript')
+    if session.facebookUser
+      script.
+        var authenticatedUser = !{JSON.stringify(session.facebookUser)}
+    script(src='components/requirejs/require.js', type='text/javascript')
+    script(src='js/config.js', type='text/javascript')
