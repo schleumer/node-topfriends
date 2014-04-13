@@ -72,7 +72,7 @@ app.on "close", ->
   console.log "Closed"
 
 server = http.createServer(app)
-io = require('socket.io').listen(server)
+io = require('socket.io').listen(server, { log: false })
 
 SessionSockets = require('session.socket.io')
 sessionSockets = new SessionSockets(io, store, cookieParser)

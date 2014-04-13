@@ -5,10 +5,10 @@ div(data-ng-init='init()')
     span {{status}}
 
 div.row-fluid.text-right(data-ng-if="!status",style='margin-bottom:20px;')
-  button.btn.btn-default.btn-info
+  button.btn.btn-default.btn-info(data-ng-click="generate()")
     i.fa.fa-star
     = ' '
-    = t('Criar Imagem')
+    b= t('Criar Top')
 
   button.btn.btn-default(data-ng-class="settings.share ? 'active' : null", data-ng-click="settings.share = !settings.share")
     i.fa(data-ng-class="settings.share ? 'fa-check' : 'fa-times'")

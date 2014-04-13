@@ -66,6 +66,7 @@
     "cookie": "~0.1.0",
     "session.socket.io": "~0.1.6",
     "jlinq": "~1.0.0",
-    "request": "~2.30.0"
+    "request": "~2.30.0",
+    "phantomjs-wrapper": "0.0.11"
   }
 }

@@ -1,6 +1,7 @@
-h1
-  i.fa.fa-exclamation-triangle.text-error
-  = ' '
-  = t('Aconteceu um erro D:')
+div.col-lg-6.col-lg-offset-3.text-center(data-ng-init='init()')
+  h1
+    i.fa.fa-exclamation-triangle.text-error
+    = ' '
+    = t('Aconteceu um erro D:')
 
-p
+  p {{message}}

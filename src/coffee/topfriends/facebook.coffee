@@ -66,7 +66,7 @@ define [
               if not response.authResponse?
                 $.pnotify {
                   type: 'alert'
-                  text: __('Você precisa autorizar o aplicativo')
+                  text: __('Você precisa autorizar o aplicativo, verifique se seu navegador bloqueia janelas popups.')
                 }
 
               facebook.login(response, (data) ->
@@ -76,7 +76,7 @@ define [
                 return
               )
               return
-            ), scope: 'email')
+            ), {scope: 'email'})
       )
     ]
 
@@ -109,16 +109,16 @@ define [
                           return
                         )
                         return
-                      ), scope: scope.topfriendsFacebookAuthorize)
+                      ), {scope: scope.topfriendsFacebookAuthorize})
                     return
                   if not element.hasClass('topfriends-facebook-authorize-ready')
                     element.addClass('topfriends-facebook-authorize-ready')
                     $http.get('/templates/facebook-authorize', {
                       cache: $templateCache
                     }).success((res) ->
-                      el = $compile(res)(scope);
+                      el = $compile(res)(scope)
                       bindAuth(el)
-                      el.insertAfter(element);
+                      el.insertAfter(element)
                     )
                 else
                   if element.hasClass('topfriends-facebook-authorize-ready')

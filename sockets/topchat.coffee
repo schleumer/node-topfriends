@@ -5,7 +5,6 @@ request = require 'request'
 
 module.exports = (socket, session, next) ->
   socket.on('topchat:threads', () ->
-    console.log 'uhuuuuuuuuul'
     fb = new Facebook(facebookConf.auth);
     fb.setAccessToken session.facebookToken
     console.log session
@@ -20,6 +19,7 @@ module.exports = (socket, session, next) ->
           },
           ((err, response) ->
             if err
+              console.log err
               done('O aplicativo não pode acessar seus dados no Facebook, tente sair e voltar.')
               return
             data = response

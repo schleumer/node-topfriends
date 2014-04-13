@@ -5,15 +5,14 @@ body{
   -o-transition: all 0.5s;
   transition: all 0.5s;
   min-width: 480px;
-  opacity: 0;
+  display: none;
 }
 
 .ng-cloak {
-  display: block!important;
 }
 
 body.ng-scope {
-  opacity: 1;
+  display:block;
 }
 
 #navbar {
@@ -111,6 +110,7 @@ body.ng-scope {
   -moz-filter: blur(2px);
   -o-filter: blur(2px);
   filter: blur(2px);
+  opacity: .7;
 }
 
 .ui-pnotify-icon .fa {
@@ -139,7 +139,6 @@ body.ng-scope {
 .top-user-box-overlay {
   position: absolute;
   z-index: 2;
-  background-color: rgba(0, 0, 0, .3);
   top: 0;
   bottom: 0;
   left: 0;
@@ -177,11 +176,9 @@ body.ng-scope {
 
 .slide-animation.ng-enter {
   left: 2%;
-  opacity: 0;
 }
 
 .slide-animation.ng-enter.ng-enter-active {
-  opacity: 1;
   left: 0;
 }
 

@@ -3,6 +3,7 @@ graph = require('fbgraph')
 crypto = require("crypto")
 ApiRes = r('/lib/jres')
 request = require('request')
+querystring = require 'querystring'
 
 
 exports.login = (req, res) ->
@@ -27,14 +28,16 @@ exports.status = (req, res) ->
   req.facebook.api('/me', (err, user) ->
     request.get("https://graph.facebook.com/oauth/access_token?grant_type=fb_exchange_token&client_id=#{facebookConf.auth.client_id}&client_secret=#{facebookConf.auth.client_secret}&fb_exchange_token=#{req.query.token}",
     (e, r, body) ->
-      console.log(e,r,body)
-      req.facebook.api('/me/permissions', (err, permissions) ->
-        user.permissions = permissions.data[0]
-        jres.setData(user)
-        req.session.facebookToken = req.query.token
-        req.session.facebookUser = user
-        res.json jres
-      )
+      query = querystring.parse(body)
+      console.log query
+      if(query.access_token)
+        req.facebook.api('/me/permissions', (err, permissions) ->
+          user.permissions = permissions.data[0]
+          jres.setData(user)
+          req.session.facebookToken = query.access_token
+          req.session.facebookUser = user
+          res.json jres
+        )
     )
   )
 
