@@ -37,6 +37,11 @@ module.exports = (grunt) ->
           'src/coffee/**/*.coffee'
         ]
         tasks: ['clean:js', 'coffee', 'uglify']
+      libs:
+        files: [
+          'src/libs/**/*'
+        ]
+        tasks: ['copy:libs']
     less:
       development:
         options:
@@ -72,6 +77,17 @@ module.exports = (grunt) ->
           dest: "public/js"
           ext: ".min.js"
         ]
+    copy:
+      libs:
+        expand: true
+        cwd: 'src/libs'
+        src: ['**']
+        dest: 'public/libs'
+      templates:
+        expand: true
+        cwd: 'src/templates'
+        src: ['**']
+        dest: 'public/templates'
     nodemon:
       dev:
         script: 'server.coffee'
@@ -87,7 +103,8 @@ module.exports = (grunt) ->
   grunt.loadNpmTasks 'grunt-contrib-less'
   grunt.loadNpmTasks 'grunt-contrib-coffee'
   grunt.loadNpmTasks 'grunt-contrib-uglify'
+  grunt.loadNpmTasks 'grunt-contrib-copy'
   grunt.loadNpmTasks 'grunt-nodemon'
   grunt.loadNpmTasks 'grunt-concurrent'
-  grunt.registerTask 'default', ['clean', 'less', 'coffee', 'uglify', 'concurrent']
+  grunt.registerTask 'default', ['clean', 'less', 'coffee', 'uglify', 'copy', 'concurrent']
   grunt.registerTask 'dev', ['clean', 'less:compile', 'watch:styles']

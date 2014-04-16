@@ -8,7 +8,7 @@ require.config
     'jquery': '../components/jquery/jquery.min'
     'underscore': '../components/lodash/dist/lodash.compat'
     'angular': '../components/angular/angular.min'
-    'ngRoute': '../components/angular-route/angular-routei.min'
+    'ngRoute': '../components/angular-route/angular-route.min'
     'ngAnimate': '../components/angular-animate/angular-animate.min'
     'topfriends.utils': 'topfriends/utils'
     'topfriends.error': 'topfriends/error'
