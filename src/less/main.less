@@ -64,17 +64,17 @@
   height: 38px; // ???
 }
 
-.app-block:before {
-  content: '';
-  position: absolute;
-  top: -170px;
-  right: -60px;
-  #gradient.directional(fade(@panel-bg, 100%), fade(@panel-bg, 92%), 45deg);
-  width: 250px;
-  height: 400px;
-  z-index: 2;
-  clip: rect(170px, 190px, 376px, 0px);
-}
+// .app-block:before {
+//   content: '';
+//   position: absolute;
+//   top: -170px;
+//   right: -60px;
+//   #gradient.directional(fade(@panel-bg, 100%), fade(@panel-bg, 92%), 45deg);
+//   width: 250px;
+//   height: 400px;
+//   z-index: 2;
+//   clip: rect(170px, 190px, 376px, 0px);
+// }
 
 .app-block .holder {
   z-index: 3;
@@ -90,6 +90,7 @@
   top: -130px;
   right: -100px;
   z-index: 1;
+  opacity: .1;
   clip: rect(130px, 179px, 376px, 0px);
 }
 

@@ -46,8 +46,6 @@
     "gm": "~1.13.1",
     "node-minify": "~0.8.1",
     "node-dir": "~0.1.5",
-    "recaptcha-async": "0.0.4",
-    "node-captcha": "~0.1.6",
     "validator": "~2.0.0",
     "canvas": "1.1.2",
     "session-mongoose": "~0.3.2",
