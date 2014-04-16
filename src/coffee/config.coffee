@@ -1,7 +1,7 @@
 'use strict'
 
 __min = (file) ->
-  if not window.devMode then (file + ".min")
+  if not window.devMode then (file + ".min") else file
 
 require.config
   baseUrl: 'js'
