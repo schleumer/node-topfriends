@@ -20,9 +20,7 @@ GLOBAL.r = r
 GLOBAL.config = r("/config")
 
 routes = require("./config/routes")
-mongoOpts =
-  server:
-    auto_reconnect: true
+mongoOpts = {}
 
 mongoose.connect "mongodb://localhost/test-boilerplate", mongoOpts
 SessionStore = require("session-mongoose")(express)
@@ -85,5 +83,4 @@ sessionSockets.on('connection', (err, socket, session) ->
   return
 )
 
-
-server.listen(3000)
+server.listen(9000)

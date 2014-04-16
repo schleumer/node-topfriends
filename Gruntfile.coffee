@@ -74,12 +74,12 @@ module.exports = (grunt) ->
         ]
     nodemon:
       dev:
+        script: 'server.coffee'
         options:
-          file: 'server.coffee'
           ignoredFiles: ['node_modules/**', 'src/**', 'public/**', '.git/**']
           watchedExtensions: ['coffee']
           env:
-            PORT: '3000'
+            PORT: '9000'
 
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-clean'

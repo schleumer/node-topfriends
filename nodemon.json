@@ -1,8 +1,0 @@
-{
-  "execMap": {
-    "js": "node --harmony",
-    "coffee": "coffee --harmony",
-    "py": "python",
-    "rb": "ruby"
-  }
-}
