@@ -44,6 +44,7 @@ app.configure "development", ->
   app.set "view engine", "jade"
   app.set "view options",
     layout: false
+  app.set "view cache", true
 
   app.use cookieParser
   app.use express.session(
@@ -63,7 +64,7 @@ app.configure "development", ->
   app.use express.errorHandler()
   helpers = r("/lib/helpers")
   app.use helpers
-  app.locals.pretty = true
+  #app.locals.pretty = true
   app.locals.basedir = config.viewsDir
   app.use app.router
   routes app

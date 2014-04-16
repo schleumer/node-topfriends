@@ -11,17 +11,17 @@
     "url": "https://github.com/schleumer/sch-boilerplate"
   },
   "devDependencies": {
-    "grunt": "~0.4.0",
-    "grunt-cli": "~0.1.6",
-    "grunt-contrib-watch": "0.3.1",
-    "grunt-contrib-clean": "0.4.0",
-    "grunt-contrib-cssmin": "0.4.1",
-    "grunt-contrib-less": "0.5.0",
-    "grunt-contrib-coffee": "0.4.0",
-    "grunt-shell": "~0.2.1",
-    "grunt-nodemon": "~0.1.2",
-    "grunt-concurrent": "~0.4.2",
-    "grunt-contrib-uglify": "~0.2.7"
+    "grunt": "latest",
+    "grunt-cli": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-contrib-clean": "latest",
+    "grunt-contrib-cssmin": "latest",
+    "grunt-contrib-less": "latest",
+    "grunt-contrib-coffee": "latest",
+    "grunt-shell": "latest",
+    "grunt-nodemon": "latest",
+    "grunt-concurrent": "latest",
+    "grunt-contrib-uglify": "latest"
   },
   "dependencies": {
     "express": "3.3.8",
@@ -70,3 +70,4 @@
     "phantomjs-wrapper": "0.0.11"
   }
 }
+
