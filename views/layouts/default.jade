@@ -6,75 +6,76 @@ html
     link(href='components/font-awesome/css/font-awesome.min.css', rel='stylesheet')
     link(href='libs/pnotify/jquery.pnotify.default.css', rel='stylesheet')
     link(href='css/themes/' + session.theme + '.css', rel='stylesheet')
-  body.ng-cloak(data-ng-controller='MainController')
-    .container
-      #navbar.navbar.navbar-inverse(role='navigation')
-        .container
-          .navbar-header
-            button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
-              span.sr-only Toggle navigation
-              span.icon-bar
-              span.icon-bar
-              span.icon-bar
-            a.navbar-brand(href='#!/')
-              i.fa.fa-star.logo-star
-              span.logo-brand #{__(config.name)}
-          .collapse.navbar-collapse
-            ul.nav.navbar-nav
-              li
-                a.send-message(href='#')
-                  i.fa.fa-envelope.send-message
-              li
-                a(data-topfriends-quit-facebook,href='javascript:;')
-                  span.text-danger [DEV]
-                  | Quit
-              li
-                a(topfriends-logout,href='javascript:;')
-                  span.text-danger [DEV]
-                  | Exit
-              li.dropdown
-                a#themes-dropdown(role='button', data-toggle='dropdown', href='#',data-sch-dropdown)
-                  | #{t('Temas')}
-                  b.caret
-                ul#menu1.dropdown-menu(role='menu', aria-labelledby='themes-dropdown')
-                  each theme, key in config.themes
+  body
+    #le-holder.ng-cloak(data-ng-controller='MainController')
+      .container
+        #navbar.navbar.navbar-inverse(role='navigation')
+          .container
+            .navbar-header
+              button.navbar-toggle(type='button', data-toggle='collapse', data-target='.navbar-collapse')
+                span.sr-only Toggle navigation
+                span.icon-bar
+                span.icon-bar
+                span.icon-bar
+              a.navbar-brand(href='#!/')
+                i.fa.fa-star.logo-star
+                span.logo-brand #{__(config.name)}
+            .collapse.navbar-collapse
+              ul.nav.navbar-nav
+                li
+                  a.send-message(href='#')
+                    i.fa.fa-envelope.send-message
+                li
+                  a(data-topfriends-quit-facebook,href='javascript:;')
+                    span.text-danger [DEV]
+                    | Quit
+                li
+                  a(topfriends-logout,href='javascript:;')
+                    span.text-danger [DEV]
+                    | Exit
+                li.dropdown
+                  a#themes-dropdown(role='button', data-toggle='dropdown', href='#',data-sch-dropdown)
+                    | #{t('Temas')}
+                    b.caret
+                  ul#menu1.dropdown-menu(role='menu', aria-labelledby='themes-dropdown')
+                    each theme, key in config.themes
+                      li(role='presentation')
+                        a(role='menuitem', href='/change-theme/#{key}') #{theme}
+
+              ul.nav.navbar-nav.pull-right(data-ng-if="user")
+                li.dropdown(style='margin-right:8px')
+                  a#user-dropdown(role='button', data-toggle='dropdown', href='#',data-sch-dropdown)
+                    img.user-profile-image(data-ng-src='https://graph.facebook.com/{{user.id}}/picture', alt=t('Eu'), src='blank.png')
+                    = ' '
+                    = t('Logado como')
+                    = ' '
+                    b {{user.name}}
+                    b.caret
+                  ul.dropdown-menu(role='menu', aria-labelledby='user-dropdown')
                     li(role='presentation')
-                      a(role='menuitem', href='/change-theme/#{key}') #{theme}
+                      a(role='menuitem', href='/user/logout')
+                        i.fa.fa-sign-out
+                        = ' '
+                        = t('Sair')
 
-            ul.nav.navbar-nav.pull-right(data-ng-if="user")
-              li.dropdown(style='margin-right:8px')
-                a#user-dropdown(role='button', data-toggle='dropdown', href='#',data-sch-dropdown)
-                  img.user-profile-image(data-ng-src='https://graph.facebook.com/{{user.id}}/picture', alt=t('Eu'), src='blank.png')
-                  = ' '
-                  = t('Logado como')
-                  = ' '
-                  b {{user.name}}
-                  b.caret
-                ul.dropdown-menu(role='menu', aria-labelledby='user-dropdown')
-                  li(role='presentation')
-                    a(role='menuitem', href='/user/logout')
-                      i.fa.fa-sign-out
-                      = ' '
-                      = t('Sair')
-
-    #main.container
-      div.slide-animation(data-ng-view, style='min-height: 300px', data-ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}")
-        h2.text-center
-          i.fa.fa-spin.fa-star.logo-star
-          = ' '
-          = t('Carregando...')
-      #footer
-        div.small
-          .pull-right
-            a(href='#!/termos')= t('Termos de uso')
-            = ' | '
-            a(href='#!/privacidade')= t('Politica de privacidade')
-            = ' | '
-            a(href='#!/privacidade')= t('Suporte')
-            = ' | '
-            span Wesley Schleumer Desenvolvimento Web
-            = ' | '
-            span Powered by NodeJS + Express
+      #main.container
+        div.slide-animation(data-ng-view, style='min-height: 300px', data-ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}")
+          h2.text-center
+            i.fa.fa-spin.fa-star.logo-star
+            = ' '
+            = t('Carregando...')
+        #footer
+          div.small
+            .pull-right
+              a(href='#!/termos')= t('Termos de uso')
+              = ' | '
+              a(href='#!/privacidade')= t('Politica de privacidade')
+              = ' | '
+              a(href='#!/privacidade')= t('Suporte')
+              = ' | '
+              span Wesley Schleumer Desenvolvimento Web
+              = ' | '
+              span Powered by NodeJS + Express
     if session.facebookUser
       script.
         var authenticatedUser = !{JSON.stringify(session.facebookUser)}
