@@ -12,6 +12,10 @@ define [
         share: true
       }
       io = socket()
+      $scope.filterIt = (it) ->
+        if not $scope.name_search
+          return true
+        console.log(it)
       $scope.init = ->
         io.on('session', (session) ->
           $scope.threads = []

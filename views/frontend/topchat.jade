@@ -1,32 +1,35 @@
 div(data-ng-init='init()')
-  h1.topchat-status.text-center(data-ng-if="status")
+  h1.topchat-status.text-center(data-ng-if="status", style="padding:60px")
     i.fa.fa-spin.fa-star.logo-star
     = ' '
     span {{status}}
 
-div.row-fluid.text-right(data-ng-if="!status",style='margin-bottom:20px;')
-  button.btn.btn-default.btn-info(data-ng-click="generate()")
-    i.fa.fa-star
-    = ' '
-    b= t('Criar Top')
-
-  button.btn.btn-default(data-ng-class="settings.share ? 'active' : null", data-ng-click="settings.share = !settings.share")
-    i.fa(data-ng-class="settings.share ? 'fa-check' : 'fa-times'")
-    = ' '
-    = t('Compartilhar')
-
-  div.btn-group
-    button.btn.btn-default(data-ng-class="settings.tag ? 'active' : null", data-ng-click="settings.tag = !settings.tag")
-      i.fa(data-ng-class="settings.tag ? 'fa-check' : 'fa-times'")
+div.row(data-ng-if="!status",style='margin-bottom:20px;')
+  div.col-md-9(style="margin-top:20px")
+    button.btn.btn-default.btn-info(data-ng-click="generate()")
+      i.fa.fa-star
       = ' '
-      = t('Marcar Amigos')
+      b= t('Criar Top')
 
-    button.btn.btn-default(title='Escolher amigos que serão marcados',sch-tooltip,sch-tooltip-placement='bottom',data-ng-if="settings.tag")
-      i.fa.fa-cog
+    button.btn.btn-default(data-ng-class="settings.share ? 'active' : null", data-ng-click="settings.share = !settings.share")
+      i.fa(data-ng-class="settings.share ? 'fa-check' : 'fa-times'")
       = ' '
+      = t('Compartilhar')
 
+    div.btn-group
+      button.btn.btn-default(data-ng-class="settings.tag ? 'active' : null", data-ng-click="settings.tag = !settings.tag")
+        i.fa(data-ng-class="settings.tag ? 'fa-check' : 'fa-times'")
+        = ' '
+        = t('Marcar Amigos')
+
+      button.btn.btn-default(title='Escolher amigos que serão marcados',sch-tooltip,sch-tooltip-placement='bottom',data-ng-if="settings.tag")
+        i.fa.fa-cog
+        = ' '
+  div.col-md-3(style="margin-top:20px")
+    input.form-control(type="text", placeholder="Filtrar", data-ng-model="name_search")
+div.clearfix
 div.row(data-ng-if="!status")
-  div.col-md-3.col-sm-4.col-xs-6(data-ng-repeat='thread in threads', data-ng-click='thread.removed = !(thread.removed || false)')
+  div.col-md-3.col-sm-4.col-xs-6(data-ng-repeat='thread in threads | filter:filterIt', data-ng-click='thread.removed = !(thread.removed || false)')
     div.top-user-box-overlay(data-ng-if="thread.removed")
       btn.btn.btn-default.btn-xs Desfazer
     div.top-user-box(style='width:100%',data-ng-class="thread.removed ? 'blurred' : null")
