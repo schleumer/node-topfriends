@@ -7,15 +7,21 @@ define [
     ['$scope', '$http', 'socket', ($scope, $http, socket) ->
       $scope.threads = []
       $scope.status = __('Aguarde...')
+      $scope.name_search = ""
       $scope.settings = {
         tag: false,
         share: true
       }
       io = socket()
       $scope.filterIt = (it) ->
+        console.log($scope.name_search)
         if not $scope.name_search
           return true
-        console.log(it)
+        false
+      $scope.makeIt = ->
+        io.emit("topchat:makeIt", {
+           
+        })
       $scope.init = ->
         io.on('session', (session) ->
           $scope.threads = []
