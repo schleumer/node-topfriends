@@ -6,7 +6,10 @@ html
     link(href='components/font-awesome/css/font-awesome.min.css', rel='stylesheet')
     link(href='libs/pnotify/jquery.pnotify.default.css', rel='stylesheet')
     link(href='css/themes/' + session.theme + '.css', rel='stylesheet')
-  body
+  body(ng-class="'angular-loaded'")
+    #le-loading
+      div(style="font-size:50px")=t("Carregando...")
+      img(src="/img/nyan-loader.gif", style="width:150px")
     #le-holder.ng-cloak(data-ng-controller='MainController')
       .container
         #navbar.navbar.navbar-inverse(role='navigation')
