@@ -4,6 +4,9 @@ async = require 'async'
 request = require 'request'
 
 module.exports = (socket, session, next) ->
+  socket.on('topchat:makeIt', (p) ->
+    console.log p
+  )
   socket.on('topchat:threads', () ->
     fb = new Facebook(facebookConf.auth);
     fb.setAccessToken session.facebookToken

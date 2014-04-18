@@ -8,6 +8,8 @@ define [
       $scope.threads = []
       $scope.status = __('Aguarde...')
       $scope.name_search = ""
+      $scope.toTag = []
+      $scope.maxUsers = 10
       $scope.settings = {
         tag: false,
         share: true
@@ -19,8 +21,10 @@ define [
           return true
         false
       $scope.makeIt = ->
+        console.log 'xd'
         io.emit("topchat:makeIt", {
-           
+           toTag: $scope.toTag,
+           maxUsers: $scope.maxUsers
         })
       $scope.init = ->
         io.on('session', (session) ->
