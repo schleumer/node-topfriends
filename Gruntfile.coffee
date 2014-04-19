@@ -58,6 +58,7 @@ module.exports = (grunt) ->
           'public/css/themes/pink.css': 'src/less/themes/pink.less'
           'public/css/themes/slate.css': 'src/less/themes/slate.less'
           'public/css/themes/yeti.css': 'src/less/themes/yeti.less'
+          'public/css/themes/white.css': 'src/less/themes/white.less'
     coffee:
       glob_to_multiple:
         expand: true
@@ -95,7 +96,7 @@ module.exports = (grunt) ->
           ignoredFiles: ['node_modules/**', 'src/**', 'public/**', '.git/**']
           watchedExtensions: ['coffee']
           env:
-            PORT: '9000'
+            PORT: '9001'
 
   grunt.loadNpmTasks 'grunt-contrib-watch'
   grunt.loadNpmTasks 'grunt-contrib-clean'

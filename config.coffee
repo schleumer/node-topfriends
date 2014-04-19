@@ -9,5 +9,6 @@ module.exports =
     yeti: t('Gelado')
     slate: t('Cinzento')
     default: t('Padrão')
+    white: t('Branco')
   default_theme: 'default'
   viewsDir: path.join(__dirname, 'views')

@@ -8,5 +8,5 @@ module.exports =
     redirect_uri: null
   auth:
     client_id:      '242235712573248'
-    client_secret:  '74a02130494ffc3eb98dce5d6a28afc6'
+    client_secret:  '3653c5e6db6e3f7dd8fd3f20127709c3'
 

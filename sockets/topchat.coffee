@@ -5,12 +5,12 @@ request = require 'request'
 
 module.exports = (socket, session, next) ->
   socket.on('topchat:makeIt', (p) ->
-    console.log p
+    console.log(p)
+    socket.emit('topchat:threads:status', 'aeHOOOOOOOO...')
   )
   socket.on('topchat:threads', () ->
     fb = new Facebook(facebookConf.auth);
     fb.setAccessToken session.facebookToken
-    console.log session
 
     socket.emit('topchat:threads:status',
       t('Trocando idéia com o Facebook...'))

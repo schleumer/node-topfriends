@@ -42,7 +42,7 @@ app.configure "development", ->
   app.set "view engine", "jade"
   app.set "view options",
     layout: false
-  #app.set "view cache", true
+  app.set "view cache", true
 
   app.use cookieParser
   app.use express.session(
@@ -76,11 +76,10 @@ io = require('socket.io').listen(server, { log: false })
 SessionSockets = require('session.socket.io')
 sessionSockets = new SessionSockets(io, store, cookieParser)
 sessionSockets.on('connection', (err, socket, session) ->
-  console.log err
   require('./sockets/index')(socket, session, () ->
     socket.emit('session', session)
   )
   return
 )
 
-server.listen(9000)
+server.listen(app.get('port'))

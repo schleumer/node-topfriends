@@ -34,6 +34,7 @@ define [
           )
           io.on('topchat:threads:data', (data) ->
             $scope.threads = data
+            $scope.toTag = $scope.threads.slice(0, 10)
           )
           io.emit('topchat:threads')
         )
